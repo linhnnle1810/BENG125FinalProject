@@ -66,16 +66,16 @@ format long;
 
 % Define initial tuning parameters
 % N = 3e1; time = [0:1:1200]; a0 = 5.78e-1; b0 = 3.91e-4; g0 = 1.26e-2; % parameters are based on 'showdown' values
-N = 1e3; time = [0:1:1400]; a0 = 3.39e-3; b0 = 3.35e-3; g0 = 3.35; % parameters are based on 'O RLY' values
-% N = 2e2; time = [0:10:20000]; a0 = 1.62e-4; b0 = 1.52e-4; g0 = 3e-2; % parameters are based on 'blog' values
+% N = 1e3; time = [0:1:1400]; a0 = 3.39e-3; b0 = 3.35e-3; g0 = 3.35; % parameters are based on 'O RLY' values
+N = 2e2; time = [0:10:20000]; a0 = 1.62e-4; b0 = 1.52e-4; g0 = 3e-2; % parameters are based on 'blog' values
 
 % Define initial conditions
 syms alpha beta gamma C0 C1 t S I
-t0 = 0; S0 = 1; I0 = N - S0;
+t0 = 0; S0 = N - 1; I0 = N - S0;
 
 % Define fixed point
-% I_f = N - gamma/beta; S_f = 0; % for a persisting meme
-I_f = 0; S_f = 2; %S_f = (gamma-beta*N)/(alpha-beta); % for a dying meme
+I_f = N - gamma/beta; S_f = 0; % for a persisting meme
+% I_f = 0; S_f = 100; % S_f = (gamma-beta*N)/(alpha-beta); % for a dying meme
 
 % Defining Jacobian matrix at FP to obtain eigenvalues and eigenvectors from
 J_E = [-1*alpha*I_f, -1*alpha*S_f;...
@@ -120,13 +120,13 @@ end
 
 figure(1);
 plot(time,I_final);
-title('Viral "showdown"')
+title('Viral "blog"')
 xlabel('days');
 ylabel('Infected Population, I(t)');
 
 figure(2);
 plot(time,S_final);
-title('Viral "showdown"')
+title('Viral "blog"')
 xlabel('days');
 ylabel('Susceptible Population, S(t)');
 
