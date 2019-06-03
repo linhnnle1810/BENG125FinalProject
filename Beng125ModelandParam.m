@@ -14,10 +14,22 @@ time=Month;
 views=Views;
 
 %Initialize parameters with possible values
-B=rand(3,1)*100;
-output_I = g(B,time); % just to check function output
+% B=rand(3,1)*100;
+B=[5.78e-1,3.91e-4,1.26e-2];
+
+old_I = g(B,time); % just to check function output
 
 [Bnew, Rsdnrm, Rsd, ExFlg, OptmInfo, Lmda, Jmat]=lsqcurvefit(@g,B,time,views);
+
+new_I = g(Bnew,time);
+
+figure(1);
+
+plot(time,old_I);
+hold on;
+plot(time,views,'.r');
+plot(time,new_I);
+legend('old fit','data','new');
 
 function I = g(B,time)
     %Constant Population
@@ -32,7 +44,7 @@ function I = g(B,time)
     trange=[0:1:length(time)-1];
     initials=[S0 I0];
     [t1, infect]=ode45(f,trange,initials);
-    I = infect(:,2);
+    I = infect(:,2)./2 - 15;
 end
 
 
