@@ -24,12 +24,14 @@ old_I = g(B,time); % just to check function output
 new_I = g(Bnew,time);
 
 figure(1);
-
 plot(time,old_I);
 hold on;
 plot(time,views,'.r');
 plot(time,new_I);
-legend('old fit','data','new');
+title('Gangnam Style')
+xlabel('time(months)');
+ylabel('number of views');
+legend('old fit','data','new fit');
 
 function I = g(B,time)
     %Constant Population
