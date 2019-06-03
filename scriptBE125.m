@@ -130,3 +130,14 @@ title('Viral "blog"')
 xlabel('days');
 ylabel('Susceptible Population, S(t)');
 
+%% Standard SIR Model 
+
+f = @(t,x) [-x(1)*x(2);x(1)*x(2)-x(2);x(2)];
+[t,xa]=ode45(f,[0 6], [4 0.1 0]);
+plot(t,xa(:,1),'b');
+hold on
+plot(t,xa(:,2),'g');
+plot(t,xa(:,3),'r');
+legend('Susceptible - S','Infected - I', 'Recovered - R'); 
+title('Standard Model for SIR','FontSize',14);
+hold off
