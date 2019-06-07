@@ -25,8 +25,8 @@ time=Month;
 views=Views;
 
 %Initialize parameters with possible values
-B=rand(3,1)*0.1;
-% B=[5.78e-1,3.91e-4,1.26e-1];
+% B=rand(3,1)*0.1;
+B=[5.78e-1,3.91e-4];
 
 param = lsqnonlin(@g,B);
 
@@ -60,6 +60,7 @@ ylabel('number of views');
 legend('old fit','data','new fit');
 grid on; grid minor;
 
+sprintf('Rate of transmission: %d\nHalting rate: %d',param(1),param(2))
 %% Function definitions
 
 function I = g(B)
